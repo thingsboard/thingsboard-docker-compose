@@ -68,6 +68,7 @@ services:
       COAP_ENABLED: "false"
       LWM2M_ENABLED: "false"
       SNMP_ENABLED: "false"
+      MODBUS_ENABLED: "false"
     env_file:
       - ../tb-node.env
     volumes:
@@ -164,6 +165,20 @@ services:
     volumes:
       - ../tb-transports/snmp/conf:/config
       - ../tb-transports/snmp/log:/var/log/tb-snmp-transport
+    depends_on:
+      - zookeeper
+      - tb-monolith
+  tb-modbus-transport:
+    restart: always
+    image: "${DOCKER_REPO}/${MODBUS_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
+    environment:
+      TB_SERVICE_ID: tb-modbus-transport
+      JAVA_OPTS: "${JAVA_OPTS}"
+    env_file:
+      - ../tb-modbus-transport.env
+    volumes:
+      - ../tb-transports/modbus/conf:/config
+      - ../tb-transports/modbus/log:/var/log/tb-modbus-transport
     depends_on:
       - zookeeper
       - tb-monolith

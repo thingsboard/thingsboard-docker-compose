@@ -153,6 +153,11 @@ services:
       - ../cache-valkey-cluster.env
     depends_on:
       - valkey-node-5
+  tb-modbus-transport:
+    env_file:
+      - ../cache-valkey-cluster.env
+    depends_on:
+      - valkey-node-5
   tb-vc-executor1:
     env_file:
       - ../cache-valkey-cluster.env

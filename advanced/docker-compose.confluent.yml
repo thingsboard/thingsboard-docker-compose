@@ -66,6 +66,9 @@ services:
   tb-snmp-transport:
     env_file:
       - ../queue-confluent.env
+  tb-modbus-transport:
+    env_file:
+      - ../queue-confluent.env
   tb-vc-executor1:
     env_file:
       - ../queue-confluent.env

@@ -63,6 +63,9 @@ services:
   tb-snmp-transport:
     volumes:
       - tb-snmp-transport-log-volume:/var/log/tb-snmp-transport
+  tb-modbus-transport:
+    volumes:
+      - tb-modbus-transport-log-volume:/var/log/tb-modbus-transport
   tb-vc-executor1:
     volumes:
       - tb-vc-executor-log-volume:/var/log/tb-vc-executor
@@ -101,6 +104,9 @@ volumes:
   tb-snmp-transport-log-volume:
     external:
       name: ${TB_SNMP_TRANSPORT_LOG_VOLUME}
+  tb-modbus-transport-log-volume:
+    external:
+      name: ${TB_MODBUS_TRANSPORT_LOG_VOLUME}
   tb-vc-executor-log-volume:
     external:
       name: ${TB_VC_EXECUTOR_LOG_VOLUME}

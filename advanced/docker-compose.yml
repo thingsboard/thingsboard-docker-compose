@@ -360,6 +360,21 @@ services:
       - zookeeper
       - tb-core1
       - tb-core2
+  tb-modbus-transport:
+    restart: always
+    image: "${DOCKER_REPO}/${MODBUS_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
+    environment:
+      TB_SERVICE_ID: tb-modbus-transport
+      JAVA_OPTS: "${JAVA_OPTS}"
+    env_file:
+      - ../tb-modbus-transport.env
+    volumes:
+      - ../tb-transports/modbus/conf:/config
+      - ../tb-transports/modbus/log:/var/log/tb-modbus-transport
+    depends_on:
+      - zookeeper
+      - tb-core1
+      - tb-core2
   tb-web-ui1:
     restart: always
     image: "${DOCKER_REPO}/${WEB_UI_DOCKER_NAME}:${TB_VERSION}"
