@@ -217,6 +217,7 @@ function permissionList() {
       799  799  tb-transports/http/log
       799  799  tb-transports/mqtt/log
       799  799  tb-transports/snmp/log
+      799  799  tb-transports/modbus/log
       799  799  tb-transports/coap/log
       799  799  tb-vc-executor/log
       999  999  tb-node/postgres

@@ -102,6 +102,11 @@ services:
       - ../cache-valkey-sentinel.env
     depends_on:
       - valkey-sentinel
+  tb-modbus-transport:
+    env_file:
+      - ../cache-valkey-sentinel.env
+    depends_on:
+      - valkey-sentinel
   tb-vc-executor:
     env_file:
       - ../cache-valkey-sentinel.env

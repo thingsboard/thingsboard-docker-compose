@@ -933,9 +933,14 @@
             "selected": false,
             "text": "tb-snmp-transport",
             "value": "tb-snmp-transport"
+          },
+          {
+            "selected": false,
+            "text": "tb-modbus-transport",
+            "value": "tb-modbus-transport"
           }
         ],
-        "query": "tb-monolith,tb-mqtt-transport,tb-http-transport,tb-coap-transport,tb-lwm2m-transport,tb-snmp-transport",
+        "query": "tb-monolith,tb-mqtt-transport,tb-http-transport,tb-coap-transport,tb-lwm2m-transport,tb-snmp-transport,tb-modbus-transport",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"

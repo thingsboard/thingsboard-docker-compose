@@ -72,6 +72,11 @@ services:
       - ../queue-kafka.env
     depends_on:
       - kafka
+  tb-modbus-transport:
+    env_file:
+      - ../queue-kafka.env
+    depends_on:
+      - kafka
   tb-vc-executor:
     env_file:
       - ../queue-kafka.env

@@ -74,6 +74,11 @@ services:
       - ../cache-valkey.env
     depends_on:
       - valkey
+  tb-modbus-transport:
+    env_file:
+      - ../cache-valkey.env
+    depends_on:
+      - valkey
   tb-vc-executor:
     env_file:
       - ../cache-valkey.env
