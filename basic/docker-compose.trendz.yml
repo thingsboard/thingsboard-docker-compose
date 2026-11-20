@@ -38,6 +38,7 @@ services:
     environment:
       TB_SERVICE_ID: trendz-application
       SCRIPT_ENGINE_DOCKER_PROVIDER_URL: trendz-python-executor:8181
+      PYTHON_EXECUTOR_SECRET: "${PYTHON_EXECUTOR_SECRET:-placeholder}"
       JAVA_OPTS: "${JAVA_OPTS}"
     env_file:
       - ../trendz.env
@@ -45,6 +46,9 @@ services:
       - ../trendz/conf:/trendz-config-files
       - ../trendz/log:/var/log/trendz
       - ../trendz/data:/data
+    networks:
+      - default
+      - trendz-python-executor
     depends_on:
       - postgres
       - trendz-python-executor
@@ -52,19 +56,24 @@ services:
   trendz-python-executor:
     restart: always
     image: "${DOCKER_REPO}/${TRENDZ_PYTHON_EXECUTOR_DOCKER_NAME}:${TRENDZ_VERSION}"
-    ports:
-      - "8181"
     environment:
       TB_SERVICE_ID: trendz-python-executor
+      PYTHON_EXECUTOR_SECRET: "${PYTHON_EXECUTOR_SECRET:-placeholder}"
       JAVA_OPTS: "${JAVA_OPTS}"
     env_file:
       - ../trendz-python-executor.env
     volumes:
       - ../trendz-python-executor/conf:/python-executor-config-files
       - ../trendz-python-executor/data:/data
+    networks:
+      - trendz-python-executor
   tb-monolith:
     env_file:
       - ../tb-node.trendz.env
   haproxy:
     links:
       - trendz
+
+networks:
+  trendz-python-executor:
+    internal: true

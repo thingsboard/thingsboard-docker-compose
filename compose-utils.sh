@@ -77,7 +77,7 @@ function trendzServiceName() {
 
 function trendzDatabaseInitServiceName() {
     TRENDZ_DB_INIT_SERVICE_NAME="trendz-db-init"
-    echo TRENDZ_DB_INIT_SERVICE_NAME
+    echo $TRENDZ_DB_INIT_SERVICE_NAME
 }
 
 function additionalComposeArgs() {
@@ -321,7 +321,7 @@ function checkFolders() {
       IS_EXIST_CHECK_PASSED=true
       if [ "$SKIP_CHOWN" = false ]; then
         echo "Checking user ${USR} group ${GRP} ownership for dir ${DIR}..."
-        if [[ $(ls -ldn "$DIR" | awk '{print $3}') -eq "$USR" ]] && [[ $(ls -ldn "$DIR" | awk '{print $4}') -eq "$GRP" ]]; then
+        if [[ -z $(find "$DIR" \( ! -uid "$USR" -o ! -gid "$GRP" \) -print -quit 2>/dev/null || true) ]]; then
           echo "> OK"
           IS_OWNER_CHECK_PASSED=true
         else
